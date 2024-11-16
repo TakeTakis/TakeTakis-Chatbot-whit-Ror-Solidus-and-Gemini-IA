@@ -1,0 +1,13 @@
+<div class="question-form">
+  <%= turbo_frame_tag "answer" do %>
+    <p id="answer"></p>  <!-- This will display the answer from Gemini -->
+  <% end %>
+
+  <%= turbo_frame_tag "new_question" do %>
+    <%= form_tag questions_path, method: :post, class: 'question-input' do %>
+      <%= label_tag :question, "Ask your question:" %>
+      <%= text_field_tag "question[question]", nil, placeholder: "Type your question" %>
+      <%= submit_tag "Ask" %>
+    <% end %>
+  <% end %>
+</div>
