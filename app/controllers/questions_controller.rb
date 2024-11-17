@@ -58,11 +58,13 @@ class QuestionsController < ApplicationController
       url = URI("https://api.d-id.com/talks")
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
+
+      api_key = ENV['D-ID_API_KEY']
   
       request = Net::HTTP::Post.new(url)
       request["accept"] = 'application/json'
       request["content-type"] = 'application/json'
-      request["authorization"] = 'Basic TWpBME5qQXlOakpBWTI5c2FXMWhMblJsWTI1dExtMTQ6WW1iNWJ1UlBYOEVfM0hfdnRIcWF6OlltYjVidVJQWDhFXzNIX3Z0SHFheg'
+      request["authorization"] = 'Basic '+api_key
 
       request.body = {
         "source_url": "https://img.freepik.com/foto-gratis/modelo-mujer-atractiva-mirando-interes-al-frente-sonriendo-expresando-felicidad-haciendo-eleccion-pie-pared-blanca_176420-42619.jpg",
@@ -93,7 +95,7 @@ class QuestionsController < ApplicationController
 
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["authorization"] = 'Basic TWpBME5qQXlOakpBWTI5c2FXMWhMblJsWTI1dExtMTQ6WW1iNWJ1UlBYOEVfM0hfdnRIcWF6OlltYjVidVJQWDhFXzNIX3Z0SHFheg'
+        request["authorization"] = 'Basic '+api_key
 
         response = http.request(request)
         response_body2 = JSON.parse(response.body)
